@@ -6,12 +6,15 @@ abstract class MusicState {}
 class MusicInitial extends MusicState {}
 
 class MusicFetchComplete extends MusicState {
-  MusicEntity musicEntity;
-  SingleMusicEntity singleMusicEntity;
-  LyricsEntity lyricsEntity;
+  final MusicEntity musicEntity;
+  final SingleMusicEntity singleMusicEntity;
+  final LyricsEntity lyricsEntity;
 
-  MusicFetchComplete(
-      {this.musicEntity, this.singleMusicEntity, this.lyricsEntity});
+  MusicFetchComplete({
+    this.musicEntity,
+    this.singleMusicEntity,
+    this.lyricsEntity,
+  });
 }
 
 class MusicFetchFailed extends MusicState {}

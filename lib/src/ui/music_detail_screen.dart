@@ -1,17 +1,27 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_fetch/src/data/bloc/music_bloc.dart';
 import 'package:music_fetch/src/data/repository/music_repo.dart';
 
 class MusicDetailScreen extends StatelessWidget {
-  int id;
+  final int id;
 
   MusicDetailScreen(this.id);
+
   final _bloc = MusicBloc(MusicRepository());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(
+          'Track Details',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       body: BlocBuilder(
         cubit: _bloc,
         // ignore: missing_return
@@ -24,7 +34,7 @@ class MusicDetailScreen extends StatelessWidget {
           }
           if (state is MusicFetchFailed) {
             return Center(
-              child: CircularProgressIndicator(),
+              child: Text('Music Fetch Failed'),
             );
           }
           if (state is InternetNotAvailable) {
@@ -70,15 +80,15 @@ class MusicDetailScreen extends StatelessWidget {
   }
 
   _buildHeading(String s) => Padding(
-    padding: const EdgeInsets.all(10),
-    child: Text(
+        padding: const EdgeInsets.all(10),
+        child: Text(
           s,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-  );
+      );
 
   _buildChildText(String track_name) => Padding(
-    padding: const EdgeInsets.all(10),
-    child: Text(track_name),
-  );
+        padding: const EdgeInsets.all(10),
+        child: Text(track_name),
+      );
 }

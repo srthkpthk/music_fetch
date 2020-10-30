@@ -6,7 +6,7 @@ abstract class MusicEvent {}
 class FetchMusic extends MusicEvent {}
 
 class FetchMusicDetails extends MusicEvent {
-  int id;
+  final int id;
 
   FetchMusicDetails(this.id);
 }

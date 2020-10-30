@@ -39,9 +39,9 @@ class MusicBloc extends Bloc<MusicEvent, MusicState> {
       if (conn == ConnectivityResult.mobile ||
           conn == ConnectivityResult.wifi) {
         SingleMusicEntity singleMusicEntity =
-            await repo.getMusicByCommonTrackID(event.id);
+            await repo.getMusicByTrackID(event.id);
         LyricsEntity lyricsEntity =
-            await repo.getLyricsByCommonTrackID(event.id);
+            await repo.getLyricsByTrackID(event.id);
         if (singleMusicEntity.message.header.status_code == 200 &&
             lyricsEntity.message.header.status_code == 200) {
           yield MusicFetchComplete(

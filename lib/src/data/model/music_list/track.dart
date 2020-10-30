@@ -1,7 +1,13 @@
+import 'package:hive/hive.dart';
 import 'package:music_fetch/src/data/model/music_list/primary_genres.dart';
 
-class Track {
+part 'track.g.dart';
+
+@HiveType(typeId: 0)
+class Track extends HiveObject {
+  @HiveField(0)
   int track_id;
+  @HiveField(1)
   String track_name;
   List<Object> track_name_translation_list;
   int track_rating;
@@ -13,14 +19,23 @@ class Track {
   int has_richsync;
   int num_favourite;
   int album_id;
+  @HiveField(2)
   String album_name;
   int artist_id;
+  @HiveField(3)
   String artist_name;
   String track_share_url;
   String track_edit_url;
   int restricted;
   String updated_time;
   Primary_genres primary_genres;
+
+
+  Track(
+      this.track_id,
+      this.track_name,
+      this.album_name,
+      this.artist_name,);
 
   Track.fromJsonMap(Map<String, dynamic> map)
       : track_id = map["track_id"],
