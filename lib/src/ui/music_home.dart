@@ -64,35 +64,25 @@ class _MusicHomeState extends State<MusicHome> {
                       ),
                       onPressed: () async {
                         final hive = await Hive.openBox<Track>('bookmark_list');
-                        if (hive.values.toList().contains(
-                              state.musicEntity.message.body.track_list[index]
-                                  .track.track_id,
-                            )) {
-                          Scaffold.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('Already Added To Bookmarks'),
-                            ),
-                          );
-                        } else
-                          hive
-                              .add(
-                                Track(
-                                    state.musicEntity.message.body
-                                        .track_list[index].track.track_id,
-                                    state.musicEntity.message.body
-                                        .track_list[index].track.track_name,
-                                    state.musicEntity.message.body
-                                        .track_list[index].track.album_name,
-                                    state.musicEntity.message.body
-                                        .track_list[index].track.artist_name),
-                              )
-                              .whenComplete(
-                                () => Scaffold.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text('Added To Bookmarks'),
-                                  ),
+                        hive
+                            .add(
+                              Track(
+                                  state.musicEntity.message.body
+                                      .track_list[index].track.track_id,
+                                  state.musicEntity.message.body
+                                      .track_list[index].track.track_name,
+                                  state.musicEntity.message.body
+                                      .track_list[index].track.album_name,
+                                  state.musicEntity.message.body
+                                      .track_list[index].track.artist_name),
+                            )
+                            .whenComplete(
+                              () => Scaffold.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('Added To Bookmarks'),
                                 ),
-                              );
+                              ),
+                            );
                       },
                     ),
                   );
